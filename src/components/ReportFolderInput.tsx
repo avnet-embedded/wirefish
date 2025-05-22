@@ -1,7 +1,7 @@
 import {FormControl, FormHelperText, TextField} from "@mui/material";
 import {SniffingStatus} from "../types/sniffing";
-import {open} from '@tauri-apps/api/dialog';
-import {appDir} from '@tauri-apps/api/path';
+import {open} from '@tauri-apps/plugin-dialog';
+import {appDataDir} from '@tauri-apps/api/path';
 import {useState} from "react";
 
 const selectDirectory = async (originalDirectory: string | null) => {
@@ -10,7 +10,7 @@ const selectDirectory = async (originalDirectory: string | null) => {
         let result = await open({
             directory: true,
             multiple: false,
-            defaultPath: await appDir(),
+            defaultPath: await appDataDir(),
         });
         if (Array.isArray(result)) {
             result = result[0];

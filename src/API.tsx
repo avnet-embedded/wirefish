@@ -1,4 +1,4 @@
-import { invoke } from "@tauri-apps/api";
+import { invoke } from "@tauri-apps/api/core";
 import { GeneralPacket } from "./types/sniffing";
 
 async function startSniffing(isResume: boolean) {

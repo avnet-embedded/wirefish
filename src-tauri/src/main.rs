@@ -46,8 +46,8 @@ use sniffer_parser::serializable_packet::util::{
     get_source_port,
 };
 use sniffer_parser::HeaderLength;
-use tauri_plugin_log::fern::colors::{ColoredLevelConfig, Color};
-use tauri_plugin_log::{LogTarget, LoggerBuilder};
+use tauri_plugin_log::fern::colors::{Color, ColoredLevelConfig};
+use tauri_plugin_log::{Target, Builder as LoggerBuilder, TargetKind};
 
 use pnet::datalink::Channel::Ethernet;
 use pnet::datalink::{self, ChannelType, Config, NetworkInterface};
@@ -60,7 +60,7 @@ use report::{
     write_report,
 };
 use std::collections::HashMap;
-use tauri::{Window, Wry};
+use tauri::{Window, Wry, Emitter};
 
 use std::sync::mpsc::{channel, Receiver, Sender};
 use std::sync::{Arc, Mutex};
@@ -434,7 +434,7 @@ fn stop_sniffing(state: tauri::State<SniffingState>, stop: bool) -> Result<(), S
         std::mem::take(&mut *exchanged_packets);
         sniffing_state.counter = 0;
     }
-    
+
     let interface_name = sniffing_state.interface_name.as_ref().ok_or(
         SniffingError::StopSniffingWithoutPriorStart(
             "Stop sniffing without prior starting of the process".to_owned(),
@@ -486,6 +486,15 @@ fn main() {
     }
 
     tauri::Builder::default()
+        .plugin(tauri_plugin_clipboard_manager::init())
+        .plugin(tauri_plugin_notification::init())
+        .plugin(tauri_plugin_os::init())
+        .plugin(tauri_plugin_global_shortcut::Builder::new().build())
+        .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_http::init())
         .plugin(
             LoggerBuilder::default()
                 .format(move |out, message, record| {
@@ -503,9 +512,8 @@ fn main() {
                 .level_for("wirefish", log::LevelFilter::Info)
                 .level_for("sniffer_parser", log::LevelFilter::Debug)
                 .targets([
-                    // LogTarget::Folder("./logs".into()),
-                    LogTarget::LogDir,
-                    LogTarget::Stdout,
+                    Target::new(TargetKind::LogDir { file_name: None }),
+                    Target::new(TargetKind::Stdout),
                 ])
                 .build(),
         )

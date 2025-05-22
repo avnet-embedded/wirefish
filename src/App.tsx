@@ -27,7 +27,8 @@ import ToggleButton from "./components/ToggleButton";
 import {DnsFields, Fields, TlsFields} from "./components/Fields";
 import HewViewer from "./components/HexViewer";
 import Filters from "./components/Filters";
-import {appWindow} from '@tauri-apps/api/window'
+import {getCurrentWebviewWindow} from '@tauri-apps/api/webviewWindow'
+const appWindow = getCurrentWebviewWindow()
 
 const darkTheme = createTheme({
     palette: {

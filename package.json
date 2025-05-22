@@ -8,7 +8,16 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.3",
     "@mui/x-data-grid": "^5.15.0",
-    "@tauri-apps/api": "^1.0.2",
+    "@tauri-apps/api": "^2.5.0",
+    "@tauri-apps/plugin-clipboard-manager": "^2.2.2",
+    "@tauri-apps/plugin-dialog": "^2.2.2",
+    "@tauri-apps/plugin-fs": "^2.3.0",
+    "@tauri-apps/plugin-global-shortcut": "^2.2.1",
+    "@tauri-apps/plugin-http": "^2.4.4",
+    "@tauri-apps/plugin-notification": "^2.2.2",
+    "@tauri-apps/plugin-os": "^2.2.1",
+    "@tauri-apps/plugin-process": "^2.2.1",
+    "@tauri-apps/plugin-shell": "^2.2.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -55,7 +64,7 @@
     ]
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.0.4",
+    "@tauri-apps/cli": "^2.5.0",
     "@tauri-apps/tauricon": "github:tauri-apps/tauricon",
     "cross-env": "^7.0.3"
   }
