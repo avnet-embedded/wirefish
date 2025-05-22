@@ -35,7 +35,7 @@ impl<'a> From<&TcpPacket<'a>> for SerializableTcpPacket {
             acknowledgement: packet.get_acknowledgement(),
             data_offset: packet.get_data_offset(),
             reserved: packet.get_reserved(),
-            flags: packet.get_flags(),
+            flags: packet.get_flags() as u16,
             window: packet.get_window(),
             checksum: packet.get_checksum(),
             urgent_ptr: packet.get_urgent_ptr(),

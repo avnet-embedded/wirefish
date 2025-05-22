@@ -33,11 +33,6 @@
     windows_subsystem = "windows"
 )]
 
-extern crate core;
-extern crate pnet;
-extern crate sniffer_parser;
-extern crate sudo;
-
 mod filtering;
 mod report;
 
@@ -85,6 +80,7 @@ const CONFIG: Config = Config {
     bpf_fd_attempts: 1000,
     linux_fanout: None,
     promiscuous: true,
+    socket_fd: None,
 };
 
 /// Errors that can occur during the sniffing process
