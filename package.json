@@ -43,8 +43,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tauri": "tauri",
-    "tauricon": "tauricon"
+    "tauri": "tauri"
   },
   "eslintConfig": {
     "extends": [
@@ -65,7 +64,6 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.5.0",
-    "@tauri-apps/tauricon": "github:tauri-apps/tauricon",
     "cross-env": "^7.0.3"
   }
 }
